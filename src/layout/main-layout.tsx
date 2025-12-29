@@ -5,15 +5,15 @@ import { SidebarLayout } from "./sidebar-layout";
 const MainLayout = () => {
   return (
     <SidebarProvider>
-      <div className="flex min-h-screen bg-slate-100">
+      <div className="flex min-h-screen">
         <SidebarLayout />
 
         <main className="flex-1">
-          <div className="p-3 border-b bg-white">
+          <div className="p-3 bg-white">
             <SidebarTrigger className="cursor-pointer" />
           </div>
 
-          <div className="px-7.5 py-4">
+          <div className="p-4">
             <Outlet />
           </div>
         </main>

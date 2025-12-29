@@ -1,26 +1,32 @@
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
 
+type ActiveLinkProps = {
+  href: string;
+  children: React.ReactNode;
+  className?: string;
+  activeClassName?: string;
+  exact?: boolean;
+};
+
 export const ActiveLink = ({
   href,
   children,
-}: {
-  href: string;
-  children: React.ReactNode;
-}) => {
+  className = "",
+  activeClassName = "",
+  exact = false,
+}: ActiveLinkProps) => {
   const location = useLocation();
-  const isActive = location.pathname === href;
+
+  const isActive = exact
+    ? location.pathname === href
+    : location.pathname.startsWith(href);
 
   return (
     <Link
       to={href}
-      className={`flex items-center gap-3 p-3 rounded-xl font-medium transition-all duration-200
-        ${
-          isActive
-            ? "bg-linear-to-r from-black to-gray-800 text-white shadow-md scale-[1.01]"
-            : "text-gray-700 hover:bg-gray-200 hover:text-black"
-        }
-      `}
+      data-active={isActive}
+      className={`${className} ${isActive ? activeClassName : ""}`}
     >
       {children}
     </Link>
