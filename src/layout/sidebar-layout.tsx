@@ -13,30 +13,30 @@ import { links } from "./layout-data";
 
 export function SidebarLayout() {
   return (
-    <Sidebar className="bg-[#0f172a] border-r border-slate-800">
+    <Sidebar className="bg-[#0f172a] ">
       {/* HEADER */}
-      <SidebarHeader className="h-16 flex items-center px-6 text-lg font-semibold">
-      
+      <SidebarHeader className="h-20 justify-center flex text-white items-center px-6 text-4xl italic font-semibold bg-[#1e2939] border-b border-slate-700">
+      HMHY
       </SidebarHeader>
 
       {/* CONTENT */}
-      <SidebarContent>
-        <SidebarGroupContent className="px-2 ">
-          <SidebarMenu className="space-y-1">
+      <SidebarContent className="bg-[#1e2939]">
+        <SidebarGroupContent className="px-2 py-4">
+          <SidebarMenu>
             {links.admin.map((item) => (
               <SidebarMenuItem key={item.label}>
                 <SidebarMenuButton asChild>
                   <ActiveLink
                     href={item.path}
                     className="
-                      flex items-center gap-3 rounded-lg px-4 py-3 text-sm font-medium
+                      flex items-center text-white gap-3 rounded-lg px-4 py-4.5 text-sm font-medium 
                       transition
-                      hover:bg-slate-800 hover:text-white
+                      hover:bg-slate-700 hover:text-white 
                       data-[active=true]:bg-slate-700
-                      data-[active=true]:text-teal-400
+                      data-[active=true]:text-white
                     "
                   >
-                    <item.icon className="h-5 w-5" />
+                    <item.icon className="h-6 w-6" />
                     <span>{item.label}</span>
                   </ActiveLink>
                 </SidebarMenuButton>
