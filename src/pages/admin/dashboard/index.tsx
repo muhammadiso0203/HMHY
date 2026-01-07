@@ -9,13 +9,14 @@ import {
   XCircle,
 } from "lucide-react";
 import "@/index.css";
-import { useNavigate } from "react-router";
+import { useNavigate } from "react-router-dom";
+import { getStatistic } from "../service/query/getStatistic";
 
 const Dashboard = () => {
   const navigate = useNavigate();
+  const {data} = getStatistic()
   return (
     <div>
-      <body className="bg-gray-300 min-h-screen w-full"></body>
 
       <div className="bg-linear-to-r from-teal-500 to-blue-600  p-8 text-white w-408 rounded-[10px]">
         <h1 className="flex items-center gap-2 text-2xl font-bold">
@@ -41,8 +42,8 @@ const Dashboard = () => {
           </div>
 
           <div className="mt-10">
-            <p className="text-3xl font-bold text-black">7</p>
-            <p className="text-[13px] text-gray-400">7 faol</p>
+            <p className="text-3xl font-bold text-black">{data?.data.teacher.length}</p>
+            <p className="text-[13px] text-gray-400">{data?.data.teacher.length} faol</p>
           </div>
         </div>
 
@@ -60,8 +61,8 @@ const Dashboard = () => {
           </div>
 
           <div className="mt-10">
-            <p className="text-3xl font-bold text-black">7</p>
-            <p className="text-[13px] text-gray-400">7 faol</p>
+            <p className="text-3xl font-bold text-black">{data?.data.student.length}</p>
+            <p className="text-[13px] text-gray-400">{data?.data.student.length} faol</p>
           </div>
         </div>
 
@@ -79,8 +80,8 @@ const Dashboard = () => {
           </div>
 
           <div className="mt-10">
-            <p className="text-3xl font-bold text-black">0</p>
-            <p className="text-[13px] text-gray-400">Jami darslar</p>
+            <p className="text-3xl font-bold text-black">{data?.data.lesson.length}</p>
+            <p className="text-[13px] text-gray-400">Jami darslar {data?.data.lesson.length}ta</p>
           </div>
         </div>
 
@@ -98,8 +99,8 @@ const Dashboard = () => {
           </div>
 
           <div className="mt-10">
-            <p className="text-3xl font-bold text-black">0</p>
-            <p className="text-[13px] text-gray-400">Jami daromad</p>
+            <p className="text-3xl font-bold text-black">{data?.data.earning.length}</p>
+            <p className="text-[13px] text-gray-400">Jami daromad {data?.data.earning.length}ta</p>
           </div>
         </div>
       </div>
@@ -117,7 +118,7 @@ const Dashboard = () => {
               <CheckCircle className="w-4 h-4 text-green-600" />
               Faol
             </div>
-            <span className="font-bold text-green-600">3</span>
+            <span className="font-bold text-green-600">{data?.data.student.length}</span>
           </div>
 
           <div className="flex justify-between items-center bg-red-50 px-4 py-3 rounded-xl">
@@ -141,7 +142,7 @@ const Dashboard = () => {
               <CheckCircle className="w-4 h-4 text-blue-600" />
               Jami
             </div>
-            <span className="font-bold text-blue-600">8</span>
+            <span className="font-bold text-blue-600">{data?.data.teacher.length}</span>
           </div>
 
           <div className="flex justify-between items-center bg-purple-50 px-4 py-3 rounded-xl">
@@ -165,7 +166,7 @@ const Dashboard = () => {
               <CheckCircle className="w-4 h-4 text-yellow-600" />
               Jami
             </div>
-            <span className="font-bold text-yellow-600">0</span>
+            <span className="font-bold text-yellow-600">{data?.data.earning.length}</span>
           </div>
 
           <div className="flex justify-between items-center bg-orange-50 px-4 py-3 rounded-xl">
@@ -173,7 +174,7 @@ const Dashboard = () => {
               <Clock className="w-4 h-4 text-orange-600" />
               Kutilmoqda
             </div>
-            <span className="font-bold text-orange-600">0</span>
+            <span className="font-bold text-orange-600">{data?.data.earning.length}</span>
           </div>
         </div>
       </div>

@@ -6,6 +6,7 @@ import Lessons from "@/pages/admin/lessons";
 import Payments from "@/pages/admin/payments";
 import Earnings from "@/pages/admin/earnings";
 import Profile from "@/pages/admin/profile";
+import DeletedTeacher from "@/pages/admin/teachers/deletedTeacher";
 
 
 export default [
@@ -20,6 +21,10 @@ export default [
   {
     path: "teachers",
     page: Teachers,
+  },
+  {
+    path: "teachers/deleted",
+    page: DeletedTeacher,
   },
   {
     path: "students",
