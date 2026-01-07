@@ -1,22 +1,19 @@
-import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
+import { SidebarProvider } from "@/components/ui/sidebar";
 import { Outlet } from "react-router-dom";
 import { SidebarLayout } from "./sidebar-layout";
+import Header from "./header";
 
 const MainLayout = () => {
   return (
     <SidebarProvider>
-      <div className="flex min-h-screen">
+      <Header />
+      <div className="flex">
         <SidebarLayout />
-
-        <main className="flex-1">
-          <div className="p-3 bg-white">
-            <SidebarTrigger className="cursor-pointer" />
-          </div>
-
-          <div className="p-4">
+        <div className="">
+          <main className="flex-1 p-6">
             <Outlet />
-          </div>
-        </main>
+          </main>
+        </div>
       </div>
     </SidebarProvider>
   );
