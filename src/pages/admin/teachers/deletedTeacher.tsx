@@ -7,8 +7,8 @@ import {
   Star,
 } from "lucide-react";
 import { useNavigate } from "react-router";
-import { getDeletedTeacher } from "../service/query/getDeletedTeacher";
 import LoadingSpinner from "@/components/loading";
+import {getDeletedTeacher} from "../service/query/getDeletedTeacher";
 
 const DeletedTeacher = () => {
   const navigate = useNavigate();

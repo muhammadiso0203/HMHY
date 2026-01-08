@@ -38,7 +38,7 @@ export interface ITeacherDataWrapper {
 export interface IGetTeachersResponse {
   statusCode: number;
   message: ILangMessage;
-  data: ITeacherDataWrapper;
+  data: ITeacher[];
 }
 
 export interface IStudentsResponse {

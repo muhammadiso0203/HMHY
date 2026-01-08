@@ -29,7 +29,7 @@ export function SidebarLayout() {
                   <ActiveLink
                     href={item.path}
                     className="
-                      flex items-center text-white gap-3 rounded-lg px-4 py-4.5 text-sm font-medium 
+                      flex items-center  text-white gap-3 rounded-lg px-4 py-4.5 text-sm font-medium 
                       transition
                       hover:bg-slate-700 hover:text-white 
                       data-[active=true]:bg-slate-700

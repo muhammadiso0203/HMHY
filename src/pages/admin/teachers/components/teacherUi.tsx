@@ -15,13 +15,13 @@ const TeacherCard = ({ teacher }: Props) => {
   const handleDelete = (id: string) => {
     softdeleteTeacher.mutate(id, {
       onSuccess: () => {
-        toast("Guruh o`chirildi", {
+        toast("Teacher o`chirildi", {
           position: "bottom-right",
         });
       },
       onError: (error) => {
         console.log(error, "error");
-        toast("Guruh o`chirilmadi", {
+        toast("Teacher o`chirilmadi", {
           position: "bottom-right",
         });
       },
@@ -100,7 +100,7 @@ const TeacherCard = ({ teacher }: Props) => {
           <button className="px-3 py-1.5 border rounded-md text-sm hover:bg-gray-100">
             Edit
           </button>
-          <button onClick={()=> handleDelete(teacher.id)} className="px-3 py-1.5 bg-red-500 text-white rounded-md text-sm hover:bg-red-600">
+          <button onClick={() => handleDelete(teacher.id)} className="px-3 py-1.5 bg-red-500 text-white rounded-md text-sm hover:bg-red-600">
             Delete
           </button>
         </div>
