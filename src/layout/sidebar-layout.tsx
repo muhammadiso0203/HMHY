@@ -6,38 +6,83 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
+  useSidebar,
 } from "@/components/ui/sidebar";
-
 import { ActiveLink } from "@/components/active-link";
 import { links } from "./layout-data";
+import { cn } from "@/lib/utils";
 
 export function SidebarLayout() {
+  const { state } = useSidebar();
+  const isCollapsed = state === "collapsed";
+
   return (
-    <Sidebar className="bg-[#0f172a] ">
-      {/* HEADER */}
-      <SidebarHeader className="h-20 justify-center flex text-white items-center px-6 text-4xl italic font-semibold bg-[#1e2939] border-b border-slate-700">
-      HMHY
+    <Sidebar
+      collapsible="icon"
+      className="border-r border-slate-800 bg-[#1a232e]"
+    >
+      {/* Logo Section */}
+      <SidebarHeader className="h-20 flex items-center justify-center bg-[#1a232e] border-b border-slate-800">
+        <div className="relative flex items-center justify-center w-full">
+          {!isCollapsed && (
+            <div className="flex items-center font-black italic tracking-tighter animate-in fade-in slide-in-from-left duration-500">
+              <span className="text-white text-3xl drop-shadow-md">HM</span>
+              <span className="text-[#00d1b2] text-3xl ml-0.5 drop-shadow-[0_0_15px_#00d1b2]">
+                HY
+              </span>
+            </div>
+          )}
+
+          {isCollapsed && (
+            <div className="animate-in fade-in zoom-in-50 duration-500">
+              <span
+                className="text-[#00d1b2] text-4xl font-black italic tracking-tight"
+                style={{ filter: "drop-shadow(0 0 20px #00d1b2)" }}
+              >
+                H
+              </span>
+            </div>
+          )}
+        </div>
       </SidebarHeader>
 
-      {/* CONTENT */}
-      <SidebarContent className="bg-[#1e2939]">
-        <SidebarGroupContent className="px-2 py-4">
-          <SidebarMenu>
+      <SidebarContent className="bg-[#1a232e] pt-6">
+        <SidebarGroupContent className="px-3.5">
+          <SidebarMenu className="space-y-2">
             {links.admin.map((item) => (
               <SidebarMenuItem key={item.label}>
-                <SidebarMenuButton asChild>
+                <SidebarMenuButton
+                  asChild
+                  tooltip={isCollapsed ? item.label : undefined}
+                  className={cn(
+                    "relative w-full h-12 flex items-center rounded-[10px] transition-all duration-300 group",
+                    "text-slate-400 hover:text-white hover:bg-[#2d3a4b]/70",
+                    "data-[active=true]:text-white data-[active=true]:bg-[#2d3a4b]"
+                  )}
+                >
                   <ActiveLink
                     href={item.path}
-                    className="
-                      flex items-center  text-white gap-3 rounded-lg px-4 py-4.5 text-sm font-medium 
-                      transition
-                      hover:bg-slate-700 hover:text-white 
-                      data-[active=true]:bg-slate-700
-                      data-[active=true]:text-white
-                    "
+                    className={cn(
+                      "flex items-center justify-center w-full h-full",
+                      isCollapsed
+                        ? "justify-center"
+                        : "justify-start gap-3 pl-4 pr-6"
+                    )}
                   >
-                    <item.icon className="h-6 w-6" />
-                    <span>{item.label}</span>
+                    <div
+                      className={cn(
+                        "absolute left-0 top-1/2 -translate-y-1/2 w-1 h-10 bg-[#00d1b2] rounded-r-full opacity-0 transition-all duration-300",
+                        "group-data-[active=true]:opacity-100 group-data-[active=true]:shadow-[4px_0_25px_#00d1b2]"
+                      )}
+                    />
+
+                    <item.icon className="h-6 w-6 min-w-6 stroke-[1.5] transition-colors duration-300" />
+
+                    {!isCollapsed && (
+                      <span className="text-[15px] font-semibold whitespace-nowrap transition-all duration-300">
+                        {item.label}
+                      </span>
+                    )}
                   </ActiveLink>
                 </SidebarMenuButton>
               </SidebarMenuItem>

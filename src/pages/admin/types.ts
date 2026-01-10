@@ -41,29 +41,36 @@ export interface IGetTeachersResponse {
   data: ITeacher[];
 }
 
+export interface IStudent {
+  id: string;
+  firstName: string;
+  lastName: string;
+  phoneNumber: string;
+  email: string | null;
+  telegramId: string | null;
+  role: "student" | string;
+  tgId: string | null;
+  tgUsername: string | null;
+  isBlocked: boolean;
+  blockedAt: string | null;
+  blockedReason: string | null;
+  step: string;
+  chatId: string | null;
+  notification: string | null;
+  createdAt: string; // ISO date
+  updatedAt: string; // ISO date
+}
+
 export interface IStudentsResponse {
-  data: {
-    id: string;
-    lastName: string;
-    firstName: string;
-    phoneNumber: string;
-    email: string | null;
-    telegramId: string | null;
-    role: "student" | string;
-    tgId: string | null;
-    tgUsername: string | null;
-    isBlocked: boolean;
-    blockedAt: string | null;
-    blockedReason: string | null;
-    step: string;
-    chatId: string | null;
-    notification: string | null;
-    createdAt: string; // ISO date
-    updatedAt: string; // ISO date
-  }[];
+  data: IStudent[];
   total: number;
   page: number;
   lastPage: number;
+}
+
+export interface QueryTYpe<T>{
+  data?:T,
+  isLoading:boolean,
 }
 
 export interface ILessonsResponse {
@@ -178,4 +185,65 @@ export interface IDeletedTeacher {
     googleRefreshToken: string | null;
   }[];
 }
+
+export interface ITeacherById {
+  statusCode: number;
+  message: {
+    uz: string;
+    en: string;
+    ru: string;
+  };
+  data: {
+    id: string;
+    email: string;
+    password: string;
+    fullName: string;
+    image: string | null;
+    phoneNumber: string;
+    cardNumber: string | null;
+    isActive: boolean;
+    isDelete: boolean;
+    role: "TEACHER";
+    specification: string | null;
+    level: string | null;
+    reason: string | null;
+    description: string | null;
+    hourPrice: number;
+    portfolioLink: string | null;
+    imageUrl: string | null;
+    rating: number;
+    expirence: string | null;
+    createdAt: string;
+    updatedAt: string;
+    googleAccessToken: string | null;
+    googleRefreshToken: string | null;
+  };
+}
+
+export interface ITeacherEdit {
+  fullName: string;
+  phoneNumber: string;
+  description: string;      // Bio
+  expirence: string;        // "1 Year"
+  hourPrice: number;        // 0
+  level: string;            // B1
+  portfolioLink: string;    // Video link
+  cardNumber: string;       // 8600....
+  specification: string;    // English
+}
+
+export interface IStudentStats {
+  statusCode: number;
+  message: {
+    uz: string;
+    en: string;
+    ru: string;
+  };
+  data: {
+    total: number;
+    active: number;
+    blocked: number;
+  };
+}
+
 

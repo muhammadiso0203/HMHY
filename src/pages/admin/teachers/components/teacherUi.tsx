@@ -2,6 +2,7 @@ import { Mail, Phone, Star, Globe, BadgeCheck } from "lucide-react";
 import type { ITeacher } from "../../types";
 import { useDeleteTeacher } from "../../service/mutation/useDeleteTeacher";
 import { toast } from "sonner";
+import { TeacherActions } from "./buttons/buttons";
 
 interface Props {
   teacher: ITeacher;
@@ -89,21 +90,7 @@ const TeacherCard = ({ teacher }: Props) => {
           <span>{teacher.rating ?? 0.0}</span>
         </div>
 
-        {/* Actions */}
-        <div className="flex gap-2">
-          <button className="px-3 py-1.5 border rounded-md text-sm hover:bg-gray-100">
-            More
-          </button>
-          <button className="px-3 py-1.5 border rounded-md text-sm hover:bg-gray-100">
-            Deactivate
-          </button>
-          <button className="px-3 py-1.5 border rounded-md text-sm hover:bg-gray-100">
-            Edit
-          </button>
-          <button onClick={() => handleDelete(teacher.id)} className="px-3 py-1.5 bg-red-500 text-white rounded-md text-sm hover:bg-red-600">
-            Delete
-          </button>
-        </div>
+        <TeacherActions teacher={teacher} handleDelete={handleDelete}/>
       </div>
     </div>
   );

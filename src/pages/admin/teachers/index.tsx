@@ -18,7 +18,7 @@ const Teachers = () => {
   if (isError) return <div>Error</div>;
 
   return (
-    <div className="min-h-screen p-6 space-y-4 w-400">
+    <div className="p-6 space-y-4 w-400">
       <TeacherSearch
         teachers={data}
         onSearchResult={setFilteredTeachers}

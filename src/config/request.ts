@@ -1,47 +1,37 @@
-import type { IResponse } from "@/pages/auth/types";
 import axios from "axios";
 import Cookies from "js-cookie";
 
 const request = axios.create({
-  baseURL: "http://localhost:3030/api/v1",
+  baseURL: "http://localhost:3000/api/v1",
 });
 
 request.interceptors.request.use((config) => {
+  // logout endpoint bo‘lsa token qo‘shmaymiz (ixtiyoriy)
+  if (config.url?.includes("/logout")) {
+    return config;
+  }
+
   const token = Cookies.get("token");
+
   if (token) {
+    config.headers = config.headers ?? {};
     config.headers.Authorization = `Bearer ${token}`;
   }
 
   return config;
 });
 
+
 request.interceptors.response.use(
-  (response) => {
-    return response;
-  },
-  async (error) => {
-    const originalRequest = error.config;
+  (response) => response,
+  (error) => {
+    if (error.response?.status === 401) {
+      // 🔥 AUTO LOGOUT
+      Cookies.remove("token");
+      Cookies.remove("role");
 
-    if (error.response.status === 401 && !originalRequest._retry) {
-      originalRequest._retry = true;
-      try {
-        const response = await axios.post<IResponse>(
-          "http://localhost:3030/api/v1/admin/refresh"
-        );
-
-        const newAccessToken = response.data.data.accessToken;
-        Cookies.set("token", newAccessToken);
-
-        originalRequest.headers.Authorization = `Bearer ${newAccessToken}`;
-        return request(originalRequest);
-      } catch (refreshError) {
-        Cookies.remove("token");
-        Cookies.remove("role");
-
-        window.location.href = "/";
-
-        return Promise.reject(refreshError);
-      }
+      // redirect (react-router bo‘lmasa ham ishlaydi)
+      window.location.href = "/";
     }
 
     return Promise.reject(error);
