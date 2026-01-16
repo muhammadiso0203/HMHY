@@ -1,8 +1,8 @@
 import { Mail, Phone, Star, Globe, BadgeCheck } from "lucide-react";
 import type { ITeacher } from "../../types";
 import { useDeleteTeacher } from "../../service/mutation/useDeleteTeacher";
-import { toast } from "sonner";
 import { TeacherActions } from "./buttons/buttons";
+import { toast } from "sonner";
 
 interface Props {
   teacher: ITeacher;

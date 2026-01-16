@@ -5,8 +5,9 @@ import Students from "@/pages/admin/students";
 import Lessons from "@/pages/admin/lessons";
 import Payments from "@/pages/admin/payments";
 import Earnings from "@/pages/admin/earnings";
-import Profile from "@/pages/admin/profile";
 import DeletedTeacher from "@/pages/admin/teachers/deletedTeacher";
+import lessonDetail from "@/pages/admin/lessons/components/lessonDetail";
+import Profile from "@/pages/admin/profile";
 
 
 export default [
@@ -33,6 +34,10 @@ export default [
   {
     path: "lessons",
     page: Lessons,
+  },
+  {
+    path: "lessons/:id",
+    page: lessonDetail,
   },
   {
     path: "payments",

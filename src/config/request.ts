@@ -11,7 +11,7 @@ request.interceptors.request.use((config) => {
     return config;
   }
 
-  const token = Cookies.get("token");
+  const token = Cookies.get("token") || Cookies.get("access_token");
 
   if (token) {
     config.headers = config.headers ?? {};
@@ -28,9 +28,10 @@ request.interceptors.response.use(
     if (error.response?.status === 401) {
       // 🔥 AUTO LOGOUT
       Cookies.remove("token");
+      Cookies.remove("access_token");
       Cookies.remove("role");
 
-      // redirect (react-router bo‘lmasa ham ishlaydi)
+      // redirect
       window.location.href = "/";
     }
 

@@ -16,6 +16,9 @@ import LoadingSpinner from "@/components/loading";
 const Dashboard = () => {
   const navigate = useNavigate();
   const { data, isLoading } = getStatistic();
+  
+  
+  
 
   return (
     <div className="w-404">
@@ -49,10 +52,10 @@ const Dashboard = () => {
 
               <div className="mt-10">
                 <p className="text-3xl font-bold text-black">
-                  {data?.data.teacher.length}
+                  {data?.teacher.length}
                 </p>
                 <p className="text-[13px] text-gray-400">
-                  {data?.data.teacher.length} faol
+                  {data?.teacher?.length} faol                  
                 </p>
               </div>
             </div>
@@ -72,10 +75,10 @@ const Dashboard = () => {
 
               <div className="mt-10">
                 <p className="text-3xl font-bold text-black">
-                  {data?.data.student.length}
+                  {data?.student.length}
                 </p>
                 <p className="text-[13px] text-gray-400">
-                  {data?.data.student.length} faol
+                  {data?.student.length} faol
                 </p>
               </div>
             </div>
@@ -95,10 +98,10 @@ const Dashboard = () => {
 
               <div className="mt-10">
                 <p className="text-3xl font-bold text-black">
-                  {data?.data.lesson.length}
+                  {data?.lesson.length}
                 </p>
                 <p className="text-[13px] text-gray-400">
-                  Jami darslar {data?.data.lesson.length}ta
+                  Jami darslar {data?.lesson.length}ta
                 </p>
               </div>
             </div>
@@ -118,10 +121,10 @@ const Dashboard = () => {
 
               <div className="mt-10">
                 <p className="text-3xl font-bold text-black">
-                  {data?.data.earning.length}
+                  {data?.earning.length}
                 </p>
                 <p className="text-[13px] text-gray-400">
-                  Jami daromad {data?.data.earning.length}ta
+                  Jami daromad {data?.earning.length}ta
                 </p>
               </div>
             </div>
@@ -141,7 +144,7 @@ const Dashboard = () => {
                   Faol
                 </div>
                 <span className="font-bold text-green-600">
-                  {data?.data.student.length}
+                  {data?.student.length}
                 </span>
               </div>
 
@@ -167,7 +170,7 @@ const Dashboard = () => {
                   Jami
                 </div>
                 <span className="font-bold text-blue-600">
-                  {data?.data.teacher.length}
+                  {data?.teacher.length}
                 </span>
               </div>
 
@@ -193,7 +196,7 @@ const Dashboard = () => {
                   Jami
                 </div>
                 <span className="font-bold text-yellow-600">
-                  {data?.data.earning.length}
+                  {data?.earning.length}
                 </span>
               </div>
 
@@ -203,7 +206,7 @@ const Dashboard = () => {
                   Kutilmoqda
                 </div>
                 <span className="font-bold text-orange-600">
-                  {data?.data.earning.length}
+                  {data?.earning.length}
                 </span>
               </div>
             </div>

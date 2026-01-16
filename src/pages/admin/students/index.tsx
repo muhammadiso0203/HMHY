@@ -1,26 +1,41 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import {
   Users,
   UserCheck,
   UserX,
   Search,
-  Eye,
-  Pencil,
-  Trash2,
-  Ban,
 } from "lucide-react";
 import { useGetStudentStats } from "../service/query/getStudentStats";
 import LoadingSpinner from "@/components/loading";
 import { useGetStudents } from "../service/query/getStudents";
 import type { IStudent, QueryTYpe } from "../types";
+import { useState, useMemo } from "react";
+import Buttons from "./components/buttons";
 
 const Student = () => {
+  const [search, setSearch] = useState("");
   const { data, isLoading } = useGetStudentStats();
-  const { data: data2, isLoading: isLoading2 }:QueryTYpe<IStudent[]> = useGetStudents();
-  
+  const { data: data2, isLoading: isLoading2 }: QueryTYpe<IStudent[]> =
+    useGetStudents();
+
+    const filteredStudents = useMemo(() => {
+  if (!data2) return [];
+
+  return data2.filter((student) => {
+    const q = search.toLowerCase();
+
+    return (
+      student.firstName?.toLowerCase().includes(q) ||
+      student.lastName?.toLowerCase().includes(q) ||
+      student.phoneNumber?.includes(q) ||
+      student.telegramId?.toString().includes(q) ||
+      student.tgUsername?.toLowerCase().includes(q)
+    );
+  });
+}, [data2, search]);
+
 
   return (
     <>
@@ -30,17 +45,17 @@ const Student = () => {
         </>
       ) : (
         <>
-          <div className="w-403 p-6 space-y-6">
+          <div className="w-400 p-6 space-y-6">
             {/* Header */}
             <div>
-              <h1 className="text-2xl font-semibold">Students</h1>
+              <h1 className=" text-2xl font-semibold">Students</h1>
               <p className="text-sm text-muted-foreground">
                 Manage student accounts and permissions
               </p>
             </div>
 
             {/* Statistics */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div className="grid grid-cols-3  gap-4">
               <Card>
                 <CardContent className="p-5">
                   <div className="flex items-center gap-3 mb-2">
@@ -100,6 +115,8 @@ const Student = () => {
                   <Input
                     className="pl-9"
                     placeholder="Search by name, phone, telegram ID..."
+                    value={search}
+                    onChange={(e) => setSearch(e.target.value)}
                   />
                 </div>
               </CardContent>
@@ -116,12 +133,12 @@ const Student = () => {
               <CardContent className="space-y-4">
                 {isLoading2 ? (
                   <LoadingSpinner />
-                ) : !data2 || data2.length === 0 ? (
+                ) : !data2 || filteredStudents.length === 0 ? (
                   <p className="text-center text-muted-foreground">
                     No students found
                   </p>
                 ) : (
-                  data2?.map((student) => (
+                  filteredStudents?.map((student) => (
                     <div
                       key={student.id}
                       className="border rounded-lg p-4 flex flex-col md:flex-row md:items-center md:justify-between gap-4"
@@ -158,32 +175,7 @@ const Student = () => {
                         </p>
                       </div>
 
-                      <div className="flex flex-wrap gap-2">
-                        <Button variant="outline" size="sm">
-                          <Eye className="h-4 w-4 mr-1" />
-                          Details
-                        </Button>
-                        <Button variant="outline" size="sm">
-                          <Pencil className="h-4 w-4 mr-1" />
-                          Edit
-                        </Button>
-                        <Button
-                          variant="outline"
-                          size="sm"
-                          className="text-orange-600"
-                        >
-                          <Ban className="h-4 w-4 mr-1" />
-                          Block
-                        </Button>
-                        <Button
-                          variant="outline"
-                          size="sm"
-                          className="text-red-600"
-                        >
-                          <Trash2 className="h-4 w-4 mr-1" />
-                          Delete
-                        </Button>
-                      </div>
+                      <Buttons  student={student} />
                     </div>
                   ))
                 )}

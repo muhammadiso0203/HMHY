@@ -2,10 +2,16 @@ import { useEffect, useState } from "react";
 import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
 import { useGetTeacherById } from "@/pages/admin/service/query/getTeacherById";
 import { useUpdateTeacher } from "@/pages/admin/service/mutation/useUpdateTeacher";
+import Cookies from "js-cookie";
+import { jwtDecode } from "jwt-decode";
 
 export const TeacherActions = ({ teacher, handleDelete }: any) => {
   const [open, setOpen] = useState(false);
   const [edit, setEdit] = useState(false);
+
+  const token = Cookies.get("token");
+  const decodedToken = token ? jwtDecode<{ role: string }>(token) : null;
+  const userRole = decodedToken?.role;
 
   // backend endpointlar
   const [fullName, setFullName] = useState("");
@@ -48,27 +54,30 @@ export const TeacherActions = ({ teacher, handleDelete }: any) => {
         >
           More
         </button>
-
-        <button className="px-3 py-1.5 border rounded-md text-sm hover:bg-gray-100">
-          Deactivate
-        </button>
-
-        <button
-          onClick={() => {
-            setOpen(true);
-            setEdit(true);
-          }}
-          className="px-3 py-1.5 border rounded-md text-sm hover:bg-gray-100"
-        >
-          Edit
-        </button>
-
-        <button
-          onClick={() => handleDelete(teacher.id)}
-          className="px-3 py-1.5 bg-red-500 text-white rounded-md text-sm hover:bg-red-600"
-        >
-          Delete
-        </button>
+        {userRole === "SUPER_ADMIN" && (
+          <button className="px-3 py-1.5 border rounded-md text-sm hover:bg-gray-100">
+            Deactivate
+          </button>
+        )}
+        {userRole === "SUPER_ADMIN" && (
+          <button
+            onClick={() => {
+              setOpen(true);
+              setEdit(true);
+            }}
+            className="px-3 py-1.5 border rounded-md text-sm hover:bg-gray-100"
+          >
+            Edit
+          </button>
+        )}
+        {userRole === "SUPER_ADMIN" && (
+          <button
+            onClick={() => handleDelete(teacher.id)}
+            className="px-3 py-1.5 bg-red-500 text-white rounded-md text-sm hover:bg-red-600"
+          >
+            Delete
+          </button>
+        )}
       </div>
 
       {/* MODAL */}
@@ -172,7 +181,7 @@ export const TeacherActions = ({ teacher, handleDelete }: any) => {
 
                 <button
                   type="button"
-                  onClick={() => {setOpen(false)}}
+                  onClick={() => { setOpen(false) }}
                   className="flex-1 border py-2 rounded-md"
                 >
                   Cancel

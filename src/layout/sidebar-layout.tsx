@@ -12,7 +12,7 @@ import { ActiveLink } from "@/components/active-link";
 import { links } from "./layout-data";
 import { cn } from "@/lib/utils";
 
-export function SidebarLayout() {
+export function SidebarLayout({role}: {role: "super_admin" | "admin" | "teacher"}) {
   const { state } = useSidebar();
   const isCollapsed = state === "collapsed";
 
@@ -48,14 +48,14 @@ export function SidebarLayout() {
 
       <SidebarContent className="bg-[#1a232e] pt-6">
         <SidebarGroupContent className="px-3.5">
-          <SidebarMenu className="space-y-2">
-            {links.admin.map((item) => (
+          <SidebarMenu >
+            {links[role].map((item) => (
               <SidebarMenuItem key={item.label}>
                 <SidebarMenuButton
                   asChild
                   tooltip={isCollapsed ? item.label : undefined}
                   className={cn(
-                    "relative w-full h-12 flex items-center rounded-[10px] transition-all duration-300 group",
+                    "relative w-full h-12 flex items-center rounded-[7px] font-normal transition-all duration-300 group",
                     "text-slate-400 hover:text-white hover:bg-[#2d3a4b]/70",
                     "data-[active=true]:text-white data-[active=true]:bg-[#2d3a4b]"
                   )}

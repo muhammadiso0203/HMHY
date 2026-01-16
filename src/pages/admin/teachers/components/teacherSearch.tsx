@@ -4,6 +4,8 @@ import { Button } from "@/components/ui/button";
 import { Trash2 } from "lucide-react";
 import { useNavigate } from "react-router";
 import type { ITeacher } from "../../types";
+import Cookies from "js-cookie";
+import { jwtDecode } from "jwt-decode";
 
 
 
@@ -23,13 +25,17 @@ const TeacherSearch = ({
 
     const filtered = teachers.filter((teacher) =>
       `${teacher.fullName} ${teacher.email} ${teacher.description ?? ""}`
-    
+
         .toLowerCase()
         .includes(value.toLowerCase())
     );
 
     onSearchResult(filtered);
   };
+
+  const token = Cookies.get("token");
+  const decodedToken = token ? jwtDecode<{ role: string }>(token) : null;
+  const userRole = decodedToken?.role;
 
   const navigate = useNavigate()
 
@@ -44,11 +50,12 @@ const TeacherSearch = ({
           value={search}
           onChange={(e) => handleSearch(e.target.value)}
         />
-
-        <Button variant="outline" className="gap-2 bg-white" onClick={() => navigate('deleted')}>
-          <Trash2 className="w-4 h-4" />
-          O‘chirilgan Teacher’lar
-        </Button>
+        {userRole === "SUPER_ADMIN" && (
+          <Button variant="outline" className="gap-2 bg-white" onClick={() => navigate('deleted')}>
+            <Trash2 className="w-4 h-4" />
+            O‘chirilgan Teacher’lar
+          </Button>
+        )}
       </div>
     </div>
   );
