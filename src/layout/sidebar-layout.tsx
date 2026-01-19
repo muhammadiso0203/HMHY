@@ -15,6 +15,7 @@ import { cn } from "@/lib/utils";
 export function SidebarLayout({role}: {role: "super_admin" | "admin" | "teacher"}) {
   const { state } = useSidebar();
   const isCollapsed = state === "collapsed";
+  console.log(role)
 
   return (
     <Sidebar

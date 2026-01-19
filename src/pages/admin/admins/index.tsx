@@ -127,7 +127,7 @@ const Admins = () => {
 
   /* ===== RENDER ===== */
   return (
-    <div className="p-4 w-400">
+    <div className="p-4 ">
       {/* HEADER */}
       <div className="flex items-center gap-4">
         <h1 className="text-2xl font-semibold">Admins</h1>

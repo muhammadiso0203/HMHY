@@ -7,98 +7,109 @@ import {
   CreditCard,
   Wallet,
   User,
+  Calendar,
 } from "lucide-react";
 
 export const links = {
   super_admin: [
     {
       label: "Dashboard",
-      path: "/app/admin/dashboard",
+      path: "/admin/dashboard",
       icon: Home,
     },
     {
       label: "Admins",
-      path: "/app/admin/admins",
+      path: "/admin/admins",
       icon: Shield,
     },
     {
       label: "Teachers",
-      path: "/app/admin/teachers",
+      path: "/admin/teachers",
       icon: Users,
     },
     {
       label: "Students",
-      path: "/app/admin/students",
+      path: "/admin/students",
       icon: GraduationCap,
     },
     {
       label: "Lessons",
-      path: "/app/admin/lessons",
+      path: "/admin/lessons",
       icon: BookOpen,
     },
     {
       label: "Payments",
-      path: "/app/admin/payments",
+      path: "/admin/payments",
       icon: CreditCard,
     },
     {
       label: "Earnings",
-      path: "/app/admin/earnings",
+      path: "/admin/earnings",
       icon: Wallet,
     },
     {
       label: "Profile",
-      path: "/app/admin/profile",
+      path: "/admin/profile",
       icon: User,
     },
   ],
   admin: [
     {
       label: "Dashboard",
-      path: "/app/admin/dashboard",
+      path: "/admin/dashboard",
       icon: Home,
     },
     {
       label: "Admins",
-      path: "/app/admin/admins",
+      path: "/admin/admins",
       icon: Shield,
     },
     {
       label: "Teachers",
-      path: "/app/admin/teachers",
+      path: "/admin/teachers",
       icon: Users,
     },
     {
       label: "Students",
-      path: "/app/admin/students",
+      path: "/admin/students",
       icon: GraduationCap,
     },
     {
       label: "Lessons",
-      path: "/app/admin/lessons",
+      path: "/admin/lessons",
       icon: BookOpen,
     },
     {
       label: "Payments",
-      path: "/app/admin/payments",
+      path: "/admin/payments",
       icon: CreditCard,
     },
     {
       label: "Earnings",
-      path: "/app/admin/earnings",
+      path: "/admin/earnings",
       icon: Wallet,
     },
     {
       label: "Profile",
-      path: "/app/admin/profile",
+      path: "/admin/profile",
       icon: User,
     },
   ],
   teacher: [
     {
-      label: "Dashboard",
-      path: "/app/teacher/dashboard",
-      icon: Home,
+      label: "My Lessons",
+      path: "/teacher/my-lessons",
+      icon: BookOpen,
+    },
+    {
+      label: "Profile",
+      path: "/teacher/profile",
+      icon: User,
+    },
+    {
+      label: "Schedule",
+      path: "/teacher/schedule",
+      icon: Calendar,
     }
   ]
 }

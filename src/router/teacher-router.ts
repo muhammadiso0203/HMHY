@@ -1,8 +1,18 @@
-import TeacherDashboard from "@/pages/teacher/dashboard.tsx/dashboard";
+import MyLessons from "@/pages/teacher/lessons/lessons";
+import TeacherLessons from "@/pages/teacher/my-lesson/lesson";
+import TeacherProfile from "@/pages/teacher/profile/profile";
 
 export default [
     {
-        path: 'dashboard',
-        page: TeacherDashboard,
+        path: 'my-lessons',
+        page: MyLessons,
+    },
+    {
+        path: 'profile',
+        page: TeacherProfile,
+    },
+    {
+        path: 'schedule',
+        page: TeacherLessons,
     }
 ]

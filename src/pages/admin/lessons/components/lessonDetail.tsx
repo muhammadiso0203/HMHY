@@ -35,7 +35,7 @@ const LessonDetail = () => {
   }
 
   return (
-    <div className="w-400 p-6">
+    <div className=" p-6">
       {/* Header */}
       <div className="mb-6">
         <Button

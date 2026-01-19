@@ -82,7 +82,7 @@ const Profile = () => {
   };
 
   return (
-    <div className="w-400 p-4">
+    <div className="p-4">
       {/* ===== Header ===== */}
       <div className="flex items-center justify-between mb-6">
         <h1 className="text-2xl font-semibold">My Profile</h1>

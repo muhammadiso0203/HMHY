@@ -9,7 +9,7 @@ const Earnings = () => {
 
   if (isLoading) {
     return (
-      <div className="w-400 p-4">
+      <div className=" p-4">
         <div className="mb-4">
           <h1 className="text-xl font-semibold">Ustoz To'lovlari</h1>
           <p className="text-sm text-muted-foreground">
@@ -22,7 +22,7 @@ const Earnings = () => {
   }
 
   return (
-    <div className="w-400 p-4">
+    <div className=" p-4">
       {/* Title */}
       <div className="mb-4">
         <h1 className="text-xl font-semibold">Ustoz To'lovlari</h1>

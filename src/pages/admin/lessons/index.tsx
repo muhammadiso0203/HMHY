@@ -10,7 +10,7 @@ import LessonUi from "./components/lessonUi";
 
 const Lessons = () => {
   return (
-    <div className="w-400 p-6">
+    <div className=" p-6">
       {/* Header */}
       <div className="mb-6">
         <h1 className="text-2xl font-semibold flex items-center gap-2">

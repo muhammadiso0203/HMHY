@@ -21,10 +21,10 @@ const Dashboard = () => {
   
 
   return (
-    <div className="w-404">
+    <div className="">
       <div className="bg-linear-to-r from-teal-500 to-blue-600  p-8 text-white rounded-[10px]">
         <h1 className="flex items-center gap-2 text-2xl font-bold">
-          Xush kelibsiz, Muhammad! 👋
+          CRM ning dashboard sahifasiga xush kelibsiz 👋
         </h1>
         <p className="mt-2 text-gray-100 font-semibold">
           Bugungi platformangiz statistikasi
@@ -36,10 +36,10 @@ const Dashboard = () => {
         </>
       ) : (
         <>
-          <div className="grid grid-cols-4 gap-5">
+          <div className="grid grid-cols-4 gap-5 max-lg:grid-cols-2">
             <div
-              onClick={() => navigate("/app/admin/teachers")}
-              className="bg-white rounded-2xl p-5 w-97 h-48.5 shadow-sm mt-7
+              onClick={() => navigate("/admin/teachers")}
+              className="bg-white rounded-2xl p-5 h-48.5 shadow-sm mt-7
                 transition-transform duration-100 ease-out
                 hover:scale-[1.04]"
             >
@@ -61,8 +61,8 @@ const Dashboard = () => {
             </div>
 
             <div
-              onClick={() => navigate("/app/admin/students")}
-              className="bg-white rounded-2xl p-5 w-97 h-48.5 shadow-sm mt-7
+              onClick={() => navigate("/admin/students")}
+              className="bg-white rounded-2xl p-5 h-48.5 shadow-sm mt-7
                 transition-transform duration-100 ease-out
                 hover:scale-[1.04]"
             >
@@ -84,8 +84,8 @@ const Dashboard = () => {
             </div>
 
             <div
-              onClick={() => navigate("/app/admin/lessons")}
-              className="bg-white rounded-2xl p-5 w-97 h-48.5 shadow-sm mt-7
+              onClick={() => navigate("/admin/lessons")}
+              className="bg-white rounded-2xl p-5 h-48.5 shadow-sm mt-7
                 transition-transform duration-100 ease-out
                 hover:scale-[1.04]"
             >
@@ -107,8 +107,8 @@ const Dashboard = () => {
             </div>
 
             <div
-              onClick={() => navigate("/app/admin/payments")}
-              className="bg-white rounded-2xl p-5 w-97 h-48.5 shadow-sm mt-7
+              onClick={() => navigate("/admin/payments")}
+              className="bg-white rounded-2xl p-5 h-48.5 shadow-sm mt-7
                 transition-transform duration-100 ease-out
                 hover:scale-[1.04]"
             >
@@ -218,7 +218,7 @@ const Dashboard = () => {
 
             <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
               <button
-                onClick={() => navigate("/app/admin/teachers")}
+                onClick={() => navigate("/admin/teachers")}
                 className="bg-blue-50 rounded-2xl p-6 flex flex-col items-center gap-2 hover:bg-blue-100"
               >
                 <Users className="w-6 h-6 text-blue-600" />
@@ -226,7 +226,7 @@ const Dashboard = () => {
               </button>
 
               <button
-                onClick={() => navigate("/app/admin/students")}
+                onClick={() => navigate("/admin/students")}
                 className="bg-green-50 rounded-2xl p-6 flex flex-col items-center gap-2 hover:bg-green-100"
               >
                 <GraduationCap className="w-6 h-6 text-green-600" />
@@ -234,7 +234,7 @@ const Dashboard = () => {
               </button>
 
               <button
-                onClick={() => navigate("/app/admin/lessons")}
+                onClick={() => navigate("/admin/lessons")}
                 className="bg-purple-50 rounded-2xl p-6 flex flex-col items-center gap-2 hover:bg-purple-100"
               >
                 <BookOpen className="w-6 h-6 text-purple-600" />
@@ -242,7 +242,7 @@ const Dashboard = () => {
               </button>
 
               <button
-                onClick={() => navigate("/app/admin/payments")}
+                onClick={() => navigate("/admin/payments")}
                 className="bg-yellow-50 rounded-2xl p-6 flex flex-col items-center gap-2 hover:bg-yellow-100"
               >
                 <DollarSign className="w-6 h-6 text-yellow-600" />

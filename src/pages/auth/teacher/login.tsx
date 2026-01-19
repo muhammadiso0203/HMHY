@@ -37,24 +37,33 @@ const TeacherLogin = () => {
       { email, password },
       {
         onSuccess: (res: any) => {
-          // AGAR BACKENDDAN TEACHER_ID KELSA STEP 2 GA O'TAMIZ
-          if (res?.data?.teacherId || res?.teacherId) {
-            const id = res?.data?.teacherId || res?.teacherId;
-            navigate(`/auth/teacher/register/step2/${id}`);
-          } else {
-            // Agar foydalanuvchi allaqachon to'liq ro'yxatdan o'tgan bo'lsa
-            if (res?.data?.accessToken || res?.accessToken) {
-              Cookies.set("access_token", res?.data?.accessToken || res?.accessToken, { expires: 1 });
-            }
+          const accessToken = res?.data?.accessToken || res?.accessToken;
+          const teacherId = res?.data?.teacherId || res?.teacherId;
+
+          // 1️⃣ AGAR TOKEN BOR BO'LSA → DASHBOARD
+          if (accessToken) {
+            Cookies.set("access_token", accessToken, { expires: 1 });
             toast.success("Xush kelibsiz!");
-            navigate("/app/teacher");
+            navigate("/teacher/my-lessons");
+            return;
           }
+
+          // 2️⃣ AKS HOLDA → STEP 2
+          if (teacherId) {
+            navigate(`/teacher/register/step2/${teacherId}`);
+            return;
+          }
+
+          // 3️⃣ HECH NARSA KELMADI
+          toast.error("Login ma'lumotlari noto‘g‘ri");
         },
         onError: (err: any) => {
           toast.error(err?.response?.data?.message || "Login xatosi");
+          toast.error("Malumotlarni to`g'ri kiriting");
         },
       }
     );
+
   };
 
   // ================= STEP 2: PHONE & PASSWORD =================
@@ -64,8 +73,12 @@ const TeacherLogin = () => {
       return;
     }
 
+    if (!teacherId) {
+      toast.error("Teacher ID topilmadi");
+      return;
+    }
     registerStep2(
-      { teacherId: teacherId!, phone, password },
+      { teacherId, phone, password },
       {
         onSuccess: (data: any) => {
           toast.success("OTP kod yuborildi!");
@@ -82,7 +95,19 @@ const TeacherLogin = () => {
           navigate(`/teacher/register/step3/${teacherId}`);
         },
         onError: (err: any) => {
-          toast.error(err?.response?.data?.message || "Xatolik yuz berdi");
+          const message = err?.response?.data?.message;
+
+          // Agar backenddan xato kelsa (401, invalid credentials)
+          if (
+            message === "Invalid credentials" ||
+            err?.response?.status === 401
+          ) {
+            toast.error("Ma'lumotlar noto‘g‘ri");
+            return;
+          }
+
+          // Boshqa xatolar
+          toast.error(message || "Login xatosi");
         },
       }
     );
@@ -115,7 +140,7 @@ const TeacherLogin = () => {
             Cookies.set("access_token", res?.data?.accessToken || res?.accessToken, { expires: 1 });
           }
           toast.success("Ro'yxatdan o'tish muvaffaqiyatli yakunlandi!");
-          navigate("/app/teacher");
+          navigate("/teacher/my-lessons");
         },
         onError: (err: any) => {
           // Backenddan kelgan massiv ko'rinishidagi xatoni o'qish
@@ -147,7 +172,23 @@ const TeacherLogin = () => {
             </button>
             <div className="flex items-center gap-2 text-gray-400 text-xs uppercase"><div className="flex-1 h-px bg-gray-200"></div>yoki<div className="flex-1 h-px bg-gray-200"></div></div>
             <input placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} className="w-full h-11 px-4 bg-[#EEF4FF] rounded-lg outline-none" />
-            <input type="password" placeholder="Parol" value={password} onChange={(e) => setPassword(e.target.value)} className="w-full h-11 px-4 bg-[#EEF4FF] rounded-lg outline-none" />
+            <div className="relative">
+              <input
+                type={showPassword ? "text" : "password"}
+                placeholder="Parol"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                className="w-full h-11 px-4 pr-11 bg-[#EEF4FF] rounded-lg outline-none"
+              />
+
+              <button
+                type="button"
+                onClick={() => setShowPassword((prev) => !prev)}
+                className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 hover:text-gray-700"
+              >
+                {showPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
+              </button>
+            </div>
             <button onClick={handleSignin} className="w-full h-11 bg-black text-white rounded-lg">Kirish</button>
           </div>
         )}

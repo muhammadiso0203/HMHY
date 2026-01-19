@@ -51,7 +51,7 @@ const Payments = () => {
       : Math.round((paid.length / transactions.length) * 100);
 
   return (
-    <div className="p-6 w-400">
+    <div className="p-6">
       {/* Header */}
       <div className="flex justify-between items-start mb-6">
         <div>

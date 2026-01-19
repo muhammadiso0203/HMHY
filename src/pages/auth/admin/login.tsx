@@ -39,7 +39,7 @@ const Login = () => {
           toast.success("Muvaffaqiyatli tizimga kirdingiz", {
             position: "top-right"
           });
-          navigate("/app/admin/dashboard");
+          navigate("/admin/dashboard");
         },
         onError: (error: any) => {
           // Backenddan kelgan xatolik xabari yoki umumiy xabar

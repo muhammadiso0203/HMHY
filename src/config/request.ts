@@ -5,34 +5,52 @@ const request = axios.create({
   baseURL: "http://localhost:3000/api/v1",
 });
 
+/* ================= REQUEST INTERCEPTOR ================= */
 request.interceptors.request.use((config) => {
-  // logout endpoint bo‘lsa token qo‘shmaymiz (ixtiyoriy)
   if (config.url?.includes("/logout")) {
     return config;
   }
 
-  const token = Cookies.get("token") || Cookies.get("access_token");
+  const adminToken = Cookies.get("token");
+  const teacherToken = Cookies.get("access_token");
 
-  if (token) {
-    config.headers = config.headers ?? {};
-    config.headers.Authorization = `Bearer ${token}`;
+  config.headers = config.headers ?? {};
+
+  // 👇 TEACHER endpointlar
+  if (config.url?.startsWith("/teacher")) {
+    if (teacherToken) {
+      config.headers.Authorization = `Bearer ${teacherToken}`;
+    }
+  }
+
+  // 👇 ADMIN endpointlar
+  else if (config.url?.startsWith("/admin")) {
+    if (adminToken) {
+      config.headers.Authorization = `Bearer ${adminToken}`;
+    }
   }
 
   return config;
 });
 
-
+/* ================= RESPONSE INTERCEPTOR ================= */
 request.interceptors.response.use(
   (response) => response,
   (error) => {
     if (error.response?.status === 401) {
-      // 🔥 AUTO LOGOUT
-      Cookies.remove("token");
-      Cookies.remove("access_token");
-      Cookies.remove("role");
+      const path = window.location.pathname;
 
-      // redirect
-      window.location.href = "/";
+      // 👇 Teacher logout
+      if (path.startsWith("/teacher")) {
+        Cookies.remove("access_token");
+        window.location.href = "/teacher/login";
+      }
+
+      // 👇 Admin logout
+      if (path.startsWith("/admin")) {
+        Cookies.remove("token");
+        window.location.href = "/admin/login";
+      }
     }
 
     return Promise.reject(error);
