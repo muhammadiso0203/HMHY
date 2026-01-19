@@ -1,11 +1,8 @@
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import {
   Calendar,
-  Lock,
-  Pencil,
   Phone,
   User,
 } from "lucide-react";
@@ -19,18 +16,6 @@ const TeacherProfile = () => {
       {/* Page Header */}
       <div className="flex items-center justify-between">
         <h1 className="text-2xl font-semibold">My Profile</h1>
-
-        <div className="flex gap-2">
-          <Button variant="outline" size="sm">
-            <Pencil className="mr-2 h-4 w-4" />
-            Edit Profile
-          </Button>
-
-          <Button variant="outline" size="sm">
-            <Lock className="mr-2 h-4 w-4" />
-            Change Password
-          </Button>
-        </div>
       </div>
 
       {/* Profile Card */}

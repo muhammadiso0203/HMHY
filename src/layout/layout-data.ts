@@ -102,14 +102,19 @@ export const links = {
       icon: BookOpen,
     },
     {
-      label: "Profile",
-      path: "/teacher/profile",
-      icon: User,
-    },
-    {
       label: "Schedule",
       path: "/teacher/schedule",
       icon: Calendar,
+    },
+    {
+      label: "Payments",
+      path: "/teacher/payments",
+      icon: Wallet,
+    },
+    {
+      label: "Profile",
+      path: "/teacher/profile",
+      icon: User,
     }
   ]
 }

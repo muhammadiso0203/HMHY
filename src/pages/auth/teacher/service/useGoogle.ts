@@ -15,7 +15,7 @@ export const useGoogle = () => {
             if (data?.accessToken) {
                 Cookies.set("access_token", data?.accessToken, { expires: 1 });
             }
-            navigate("/teacher/dashboard");
+            navigate("/teacher/my-lessons");
         },
     })
 };

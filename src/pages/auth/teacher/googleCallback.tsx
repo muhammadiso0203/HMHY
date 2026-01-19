@@ -16,7 +16,7 @@ const TeacherGoogleCallback = () => {
       sameSite: "strict",
     });
 
-    navigate("/teacher/dashboard", { replace: true });
+    navigate("/teacher/my-lessons", { replace: true });
   }, [params, navigate]);
 
   return <div>Google orqali kirilmoqda...</div>;

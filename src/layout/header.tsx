@@ -32,7 +32,7 @@ export const Header = ({ role }: any) => {
             {role.toLowerCase()}
           </Button>
         </Link>
-        
+
         <Button onClick={() => logout()} variant="ghost">
           <LogOut className="w-4 h-4 text-gray-300" />
         </Button>

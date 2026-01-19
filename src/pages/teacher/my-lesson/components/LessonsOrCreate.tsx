@@ -4,7 +4,37 @@ import { Button } from "@/components/ui/button";
 import { Calendar, CheckCircle, Plus } from "lucide-react";
 import { Skeleton } from "@/components/ui/skeleton";
 import { cn } from "@/lib/utils";
-import type { LessonsOrCreateProps } from "../../types";
+import type { ILessons } from "@/pages/admin/types";
+
+interface LessonsOrCreateProps {
+  isLoading: boolean;
+  showCreate: boolean;
+  selectedDate: string | null;
+  selectedLessons: ILessons[];
+  durationLabel: string | null;
+  formError: string | null;
+  isCreateError: boolean;
+  isCreating: boolean;
+  hourOptions: string[];
+  minuteOptions: string[];
+  startHour: string;
+  startMinute: string;
+  endHour: string;
+  endMinute: string;
+  setStartHour: (value: string) => void;
+  setStartMinute: (value: string) => void;
+  setEndHour: (value: string) => void;
+  setEndMinute: (value: string) => void;
+  setShowCreate: (value: boolean) => void;
+  setFormError: (value: string | null) => void;
+  handleCreateLesson: () => void;
+  formatFullDate: (date: string) => string;
+  formatTime: (date: string) => string;
+  lessonName: string;
+  setLessonName: (value: string) => void;
+  price: string;
+  setPrice: (value: string) => void;
+}
 
 
 
@@ -56,7 +86,7 @@ export const LessonsOrCreate = ({
         ) : showCreate ? (
           <div className="space-y-4">
             <div className="space-y-2">
-              <label className="text-sm font-medium">Dars nomi</label>
+              <label className="text-sm font-medium">Dars nomi *</label>
               <input
                 value={lessonName}
                 onChange={(e) => setLessonName(e.target.value)}
@@ -66,7 +96,7 @@ export const LessonsOrCreate = ({
             </div>
 
             <div className="space-y-2">
-              <label className="text-sm font-medium">Narx (so'm)</label>
+              <label className="text-sm font-medium">Narx (so'm) *</label>
               <input
                 value={price}
                 onChange={(e) => setPrice(e.target.value)}
@@ -194,11 +224,11 @@ export const LessonsOrCreate = ({
                     className={cn(
                       "capitalize",
                       lesson.status === "booked" &&
-                        "bg-yellow-100 text-yellow-700",
+                      "bg-yellow-100 text-yellow-700",
                       lesson.status === "completed" &&
-                        "bg-green-100 text-green-700",
+                      "bg-green-100 text-green-700",
                       lesson.status === "cancelled" &&
-                        "bg-red-100 text-red-700"
+                      "bg-red-100 text-red-700"
                     )}
                   >
                     {lesson.status}
