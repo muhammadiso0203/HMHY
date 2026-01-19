@@ -2,7 +2,7 @@ import LoadingSpinner from "@/components/loading";
 import { Button } from "@/components/ui/button";
 import { useGetLesson } from "../../service/query/getLessons";
 import { ChevronRightIcon } from "lucide-react";
-import { Navigate, useNavigate } from "react-router";
+import { useNavigate } from "react-router";
 
 const LessonUi = () => {
   const { data, isLoading } = useGetLesson();

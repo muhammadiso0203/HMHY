@@ -4,7 +4,6 @@ import {
   Calendar,
   Clock,
   Layers,
-  Video,
 
 } from "lucide-react";
 import { getLessonStats } from "../service/query/getLessonStats";
