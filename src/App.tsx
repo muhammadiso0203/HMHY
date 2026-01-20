@@ -48,6 +48,7 @@ const App = () => {
           </Route>
         </Route>
 
+
         <Route path="teacher">
           <Route element={<MainLayout role="teacher" />}>
             <Route index element={<TeacherDashboard />} />

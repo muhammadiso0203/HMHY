@@ -1,10 +1,8 @@
 import { Card, CardContent } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
 import {
     CheckCircle2,
     XCircle,
     AlertTriangle,
-    FileText,
     Wallet,
 } from "lucide-react";
 import { useGetPaymentStatistic } from "../service/query/useGetPaymentStatistic";

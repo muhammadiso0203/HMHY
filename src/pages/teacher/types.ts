@@ -1,4 +1,3 @@
-import type { ILessons } from "../admin/types";
 
 export interface ITeacherProfile {
     statusCode: number;

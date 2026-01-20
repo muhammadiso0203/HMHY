@@ -192,8 +192,9 @@ const TeacherLessons = () => {
                 lessonName={lessonName}
                 setLessonName={setLessonName}
                 price={price}
-                setPrice={setPrice}
-            />
+                setPrice={setPrice} googleMeetUrl={""} setGoogleMeetUrl={function (): void {
+                    throw new Error("Function not implemented.");
+                } }            />
         </div>
     );
 };
