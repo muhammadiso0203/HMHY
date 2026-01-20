@@ -7,7 +7,7 @@ export const useLogout = () => {
     const navigate = useNavigate()
     return useMutation({
         mutationFn: () => {
-            return request.post('/auth/admin/logout').then((res) => res.data)
+            return request.post(`/auth/admin/logout`).then((res) => res.data)
 
         },
         onSuccess: () => {
