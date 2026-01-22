@@ -10,7 +10,7 @@ import LessonUi from "./components/lessonUi";
 
 const Lessons = () => {
   return (
-    <div className=" p-6">
+    <div className="p-6">
       {/* Header */}
       <div className="mb-6">
         <h1 className="text-2xl font-semibold flex items-center gap-2">
@@ -30,9 +30,9 @@ const Lessons = () => {
         </div>
 
         {/* Inputs */}
-        <div className="flex flex-col lg:flex-row gap-3">
+        <div className="flex lg:flex-row gap-3">
           {/* Search */}
-          <div className="relative w-180">
+          <div className="relative flex-1 min-w-50">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
             <input
               type="text"
@@ -42,11 +42,11 @@ const Lessons = () => {
           </div>
 
           {/* Level select */}
-          <Select>
-            <SelectTrigger className="w-100 rounded-lg text-sm">
+          <Select defaultValue="all">
+            <SelectTrigger className="w-50 rounded-lg text-sm">
               <SelectValue />
             </SelectTrigger>
-            <SelectContent>
+            <SelectContent >
               <SelectItem value="all">All Levels</SelectItem>
               <SelectItem value="beginner">Beginner</SelectItem>
               <SelectItem value="intermediate">Intermediate</SelectItem>
@@ -55,8 +55,8 @@ const Lessons = () => {
           </Select>
 
           {/* Rating select */}
-          <Select>
-            <SelectTrigger className="w-100 rounded-lg text-sm">
+          <Select defaultValue="all">
+            <SelectTrigger className="w-50 rounded-lg text-sm">
               <SelectValue  />
             </SelectTrigger>
             <SelectContent>

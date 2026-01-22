@@ -129,8 +129,8 @@ const Earnings = () => {
               >
                 {/* Teacher */}
                 <div className="flex items-center gap-3">
-                  <div className="w-9 h-9 rounded-full bg-[#6b4b3e] text-white flex items-center justify-center font-medium">
-                    {teacher.fullName.charAt(0)}
+                  <div className="min-w-9 min-h-9 rounded-full bg-[#6b4b3e] text-white flex items-center justify-center font-medium">
+                    {teacher.imageUrl ? teacher.imageUrl : teacher.fullName.charAt(0)}
                   </div>
                   <div>
                     <p className="font-medium">{teacher.fullName}</p>

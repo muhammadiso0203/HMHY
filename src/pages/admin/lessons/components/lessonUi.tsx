@@ -13,7 +13,7 @@ const LessonUi = () => {
   }
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-5">
+    <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-3 gap-4 mt-5">
       {data?.map((lesson) => (
         <div
           key={lesson.id}
@@ -24,8 +24,8 @@ const LessonUi = () => {
             {/* Avatar */}
             <div className="relative">
               <div className="w-12 h-12 rounded-full bg-[#6b4b3e] text-white flex items-center justify-center font-semibold text-lg">
-                {lesson.teacher.image
-                  ? lesson.teacher.image
+                {lesson.teacher.imageUrl
+                  ? lesson.teacher.imageUrl
                   : lesson.teacher.fullName.charAt(0)}
               </div>
 

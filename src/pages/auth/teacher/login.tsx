@@ -164,7 +164,7 @@ const TeacherLogin = () => {
           <div className="space-y-6">
             <h1 className="text-2xl font-bold text-center">Teacher Login</h1>
             <button
-              onClick={() => (window.location.href = "http://localhost:3000/api/v1/auth/teacher/google")}
+              onClick={() => (window.location.href = "http://13.201.56.55/api/v1/auth/teacher/google")}
               className="w-full h-11 border rounded-lg flex items-center justify-center gap-2 hover:bg-gray-50"
             >
               <img src="https://www.svgrepo.com/show/355037/google.svg" className="w-5 h-5" alt="" />

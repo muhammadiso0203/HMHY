@@ -51,7 +51,7 @@ const Payments = () => {
   return (
     <div className="p-6">
       {/* Header */}
-      <div className="flex justify-between items-start mb-6">
+      <div className="flex flex-col gap-4 sm:flex-row sm:justify-between sm:items-start mb-6">
         <div>
           <h1 className="text-2xl font-bold text-gray-900">Payments</h1>
           <p className="text-sm text-gray-500">

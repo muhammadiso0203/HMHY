@@ -20,7 +20,7 @@ const DeletedTeacher = () => {
   const teachers = data?.data ?? [];
 
   return (
-    <div className="min-h-screen px-25 py-5 w-404">
+    <div className="min-h-screen px-5 py-5">
       {/* Header */}
       <div className="flex items-start justify-between mb-6">
         <div>
